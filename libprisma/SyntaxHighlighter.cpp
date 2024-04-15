@@ -27,7 +27,10 @@ std::map<std::string, std::string> SyntaxHighlighter::languages() const
 TokenList SyntaxHighlighter::tokenize(std::string_view text, const Grammar* grammar)
 {
     TokenList tokenList(text);
-    matchGrammar(text, tokenList, grammar, tokenList.head, 0, nullptr);
+    try {
+        matchGrammar(text, tokenList, grammar, tokenList.head, 0, nullptr);
+    } catch (...) {
+    }
 
     return tokenList;
 }
